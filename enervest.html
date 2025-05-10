@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enervest | Renewable Energy Crowdfunding Platform</title>
+    <meta name="description" content="Join our movement to fund renewable energy projects and accelerate the transition to net-zero emissions">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(0, 100, 0, 0.9) 0%, rgba(0, 60, 100, 0.9) 100%);
+        }
+        .energy-transition {
+            background: url(home.png) no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        .energy-transition::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(41, 93, 127, 0.7);
+        }
+        .impact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: #e0e0e0;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #006400, #00AA00);
+            transition: width 1s ease-in-out;
+        }
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="flex items-center">
+                    <img src="logo.png" alt="Enervest Logo" class="h-10 mr-2">
+                    <span class="text-2xl font-bold text-green-800">Enervest</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-700 hover:text-green-800 font-medium">Home</a>
+                <a href="#projects" class="text-gray-700 hover:text-green-800 font-medium">Projects</a>
+                <a href="#net-zero" class="text-gray-700 hover:text-green-800 font-medium">Net Zero</a>
+                <a href="#impact" class="text-gray-700 hover:text-green-800 font-medium">Our Impact</a>
+                <a href="#about" class="text-gray-700 hover:text-green-800 font-medium">About</a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="px-4 py-2 text-green-800 font-medium hover:bg-green-50 rounded-lg">Log In</a>
+                <a href="#" class="px-6 py-2 bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition">Join Now</a>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#" class="py-2 text-gray-700 hover:text-green-800 font-medium">Home</a>
+                <a href="#projects" class="py-2 text-gray-700 hover:text-green-800 font-medium">Projects</a>
+                <a href="#net-zero" class="py-2 text-gray-700 hover:text-green-800 font-medium">Net Zero</a>
+                <a href="#impact" class="py-2 text-gray-700 hover:text-green-800 font-medium">Our Impact</a>
+                <a href="#about" class="py-2 text-gray-700 hover:text-green-800 font-medium">About</a>
+                <div class="flex flex-col space-y-2 pt-2 border-t">
+                    <a href="#" class="px-4 py-2 text-center text-green-800 font-medium hover:bg-green-50 rounded-lg">Log In</a>
+                    <a href="#" class="px-4 py-2 text-center bg-green-700 text-white font-medium rounded-lg hover:bg-green-800 transition">Join Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="energy-transition min-h-screen flex items-center justify-center relative">
+        <div class="container mx-auto px-4 text-center z-10">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">Accelerating the Energy Transition</h1>
+            <p class="text-xl md:text-2xl text-white mb-10 max-w-3xl mx-auto">
+                Join our community in funding renewable energy projects that deliver measurable impact toward net-zero emissions
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="px-8 py-4 bg-green-700 text-white font-bold rounded-lg hover:bg-green-800 transition transform hover:scale-105">
+                    Explore Projects
+                </a>
+                <a href="#" class="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    Become a Backer
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Net Zero Commitment -->
+    <section id="net-zero" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Delivering Net Zero</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto">
+                We're committed to funding projects that directly contribute to carbon neutrality by 2050. Every project on our platform is vetted for its potential climate impact.
+            </p>
+            
+            <!-- Tabs -->
+            <div class="max-w-5xl mx-auto">
+                <div class="flex flex-wrap border-b border-gray-200 mb-8">
+                    <button class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition" data-tab="strategy">
+                        Our Strategy
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition" data-tab="projects">
+                        Carbon Reduction Projects
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition" data-tab="progress">
+                        Progress Tracking
+                    </button>
+                </div>
+                
+                <!-- Tab Content -->
+                <div id="strategy" class="tab-content active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">A Three-Pillar Approach</h3>
+                            <p class="text-gray-600 mb-6">
+                                Our net-zero strategy is built on three key pillars that guide our project selection and community engagement:
+                            </p>
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-green-100 p-2 rounded-full mr-4">
+                                        <i class="fas fa-solar-panel text-green-800"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Renewable Energy Expansion</h4>
+                                        <p class="text-gray-600">Funding solar, wind, hydro and other clean energy projects to displace fossil fuels</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-green-100 p-2 rounded-full mr-4">
+                                        <i class="fas fa-industry text-green-800"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Energy Efficiency</h4>
+                                        <p class="text-gray-600">Supporting projects that reduce energy consumption in buildings and industry</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-green-100 p-2 rounded-full mr-4">
+                                        <i class="fas fa-tree text-green-800"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-800">Carbon Removal</h4>
+                                        <p class="text-gray-600">Investing in nature-based solutions and direct air capture technologies</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 rounded-xl p-8">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Net zero strategy" 
+                                 class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="projects" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-green-50 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Featured Carbon Reduction Projects</h3>
+                            <p class="text-gray-600 mb-6">
+                                These projects are making significant contributions to our net-zero goals:
+                            </p>
+                            <div class="space-y-6">
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Solar Microgrids for Rural Indonesia</h4>
+                                    <p class="text-gray-600 mb-2">Displacing diesel generators with clean solar power in 15 villages</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%;"></div>
+                                    </div>
+                                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                                        <span>85% funded</span>
+                                        <span>Estimated CO2 reduction: 5,000 tons/year</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Urban Rooftop Solar Initiative</h4>
+                                    <p class="text-gray-600 mb-2">Installing solar panels on 50 commercial buildings in Jakarta</p>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 62%;"></div>
+                                    </div>
+                                    <div class="flex justify-between text-sm text-gray-600 mt-1">
+                                        <span>62% funded</span>
+                                        <span>Estimated CO2 reduction: 8,200 tons/year</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Project Impact Calculator</h3>
+                            <p class="text-gray-600 mb-6">
+                                See how your contribution can make a difference:
+                            </p>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Investment Amount (Rp)</label>
+                                <input type="range" min="100000" max="10000000" value="500000" step="100000" class="w-full" id="investmentSlider">
+                                <div class="flex justify-between text-sm text-gray-600 mt-1">
+                                    <span>Rp 100,000</span>
+                                    <span id="investmentValue">Rp 500,000</span>
+                                    <span>Rp 10,000,000</span>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Project Type</label>
+                                <select class="w-full p-2 border border-gray-300 rounded">
+                                    <option>Solar Energy</option>
+                                    <option>Wind Energy</option>
+                                    <option>Energy Efficiency</option>
+                                    <option>Carbon Removal</option>
+                                </select>
+                            </div>
+                            <button class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition">
+                                Calculate Impact
+                            </button>
+                            <div class="mt-6 p-4 bg-white rounded-lg shadow-sm">
+                                <h4 class="font-bold text-gray-800 mb-2">Estimated Impact</h4>
+                                <p class="text-gray-600">Your investment could reduce CO2 emissions by approximately <span class="font-bold text-green-800">1.2 tons</span> annually.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="progress" class="tab-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Collective Progress</h3>
+                            <p class="text-gray-600 mb-6">
+                                Since our launch, the Enervest community has achieved measurable impact:
+                            </p>
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium text-gray-800">2025 Carbon Reduction Target</span>
+                                        <span class="text-sm text-gray-600">45% of goal</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium text-gray-800">Renewable Energy Capacity Funded</span>
+                                        <span class="text-sm text-gray-600">18.7 MW</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 62%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium text-gray-800">Community Members Engaged</span>
+                                        <span class="text-sm text-gray-600">8,942</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 89%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-100 rounded-xl p-8">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" 
+                                 alt="Progress dashboard" 
+                                 class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Our Measurable Impact</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">
+                Every project funded through Enervest contributes to tangible environmental and social benefits
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Impact 1 -->
+                <div class="impact-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="text-5xl text-green-700 mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">18.7 MW</h3>
+                    <p class="text-gray-600">
+                        Of renewable energy capacity installed through funded projects
+                    </p>
+                </div>
+                
+                <!-- Impact 2 -->
+                <div class="impact-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="text-5xl text-green-700 mb-4">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">24,500 tons</h3>
+                    <p class="text-gray-600">
+                        Of CO2 emissions avoided annually by our projects
+                    </p>
+                </div>
+                
+                <!-- Impact 3 -->
+                <div class="impact-card bg-white p-8 rounded-xl shadow-md transition duration-300">
+                    <div class="text-5xl text-green-700 mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">35,000+</h3>
+                    <p class="text-gray-600">
+                        People with improved access to clean energy
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Real-Time Impact Dashboard</h3>
+                        <p class="text-gray-600 mb-6">
+                            Our interactive dashboard shows the collective impact of all Enervest projects in real-time. See exactly how your contributions are making a difference.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-green-700 font-medium">
+                            Explore Dashboard <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    <div class="bg-gray-100 flex items-center justify-center p-8">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Impact dashboard" 
+                             class="w-full h-auto rounded-lg shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-4">Featured Projects</h2>
+            <p class="text-xl text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+                Discover renewable energy projects you can support today
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="px-4 py-2 bg-green-700 text-white rounded-lg">All Projects</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Solar</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Wind</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Hydro</button>
+                <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Energy Efficiency</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                    <div class="h-48 bg-green-100 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                             alt="Solar panels on school roof" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Solar Energy
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Solar Schools Indonesia</h3>
+                        <p class="text-gray-600 mb-4">Installing solar panels on 10 schools in West Java to reduce electricity costs and carbon emissions</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Raised: Rp 850 juta</span>
+                                <span>Goal: Rp 1.2 miliar</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-600">
+                                <i class="fas fa-users mr-1"></i> 142 backers
+                            </div>
+                            <a href="#" class="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition">
+                                Fund Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                    <div class="h-48 bg-blue-100 relative overflow-hidden">
+                        <img src="hydro.jpeg" 
+                             alt="Micro-hydro power plant" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Hydro Energy
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bali Micro-Hydro Project</h3>
+                        <p class="text-gray-600 mb-4">Building a small-scale hydro plant to power 3 villages in Bali's mountainous region</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Raised: Rp 1.1 miliar</span>
+                                <span>Goal: Rp 1.5 miliar</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 73%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-600">
+                                <i class="fas fa-users mr-1"></i> 89 backers
+                            </div>
+                            <a href="#" class="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition">
+                                Fund Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 hover:shadow-lg">
+                    <div class="h-48 bg-green-100 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Wind turbines in field" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-green-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            Wind Energy
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Sumba Island Wind Farm</h3>
+                        <p class="text-gray-600 mb-4">Developing a community-owned wind farm to provide clean energy to 500 households</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                <span>Raised: Rp 2.3 miliar</span>
+                                <span>Goal: Rp 3 miliar</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 76%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-600">
+                                <i class="fas fa-users mr-1"></i> 210 backers
+                            </div>
+                            <a href="#" class="px-4 py-2 bg-green-700 text-white rounded-lg hover:bg-green-800 transition">
+                                Fund Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="px-8 py-3 bg-green-700 text-white font-bold rounded-lg hover:bg-green-800 transition inline-block">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 hero-gradient">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Join the Energy Transition</h2>
+            <p class="text-xl text-white mb-10 max-w-3xl mx-auto">
+                Together, we can accelerate the shift to renewable energy and achieve net-zero emissions
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="px-8 py-4 bg-white text-green-800 font-bold rounded-lg hover:bg-gray-100 transition transform hover:scale-105">
+                    Start Funding Projects
+                </a>
+                <a href="#" class="px-8 py-4 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:bg-opacity-10 transition transform hover:scale-105">
+                    Submit Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Enervest</h2>
+                    <p class="text-xl text-gray-600 mb-6">
+                        We're on a mission to democratize access to renewable energy funding while delivering measurable climate impact.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Founded in 2020, Enervest has become Indonesia's leading renewable energy crowdfunding platform. We connect passionate individuals and organizations with impactful clean energy projects that need funding.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-green-100 px-4 py-2 rounded-full">
+                            <span class="text-green-800 font-medium">Transparency</span>
+                        </div>
+                        <div class="bg-blue-100 px-4 py-2 rounded-full">
+                            <span class="text-blue-800 font-medium">Impact</span>
+                        </div>
+                        <div class="bg-green-100 px-4 py-2 rounded-full">
+                            <span class="text-green-800 font-medium">Community</span>
+                        </div>
+                        <div class="bg-blue-100 px-4 py-2 rounded-full">
+                            <span class="text-blue-800 font-medium">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 mt-8 lg:mt-0">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-green-100 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-green-800 mb-2">50+</h3>
+                            <p class="text-gray-600">Projects Funded</p>
+                        </div>
+                        <div class="bg-blue-100 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-2">10K+</h3>
+                            <p class="text-gray-600">Community Members</p>
+                        </div>
+                        <div class="bg-blue-100 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-2">Rp 25M+</h3>
+                            <p class="text-gray-600">Total Funds Raised</p>
+                        </div>
+                        <div class="bg-green-100 rounded-xl p-6">
+                            <h3 class="text-2xl font-bold text-green-800 mb-2">5K+</h3>
+                            <p class="text-gray-600">Tonnes CO2 Reduced</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team -->
+            <div class="mt-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Our Leadership Team</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Team Member 1 -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+                        <div class="w-32 h-32 rounded-full bg-green-100 mx-auto mb-4 overflow-hidden">
+                            <img src="ceo.jpeg" alt="Elsa Rahmatika D" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Elsa Rahmatika</h3>
+                        <p class="text-blue-800 font-medium mb-3">CEO & Founder</p>
+                        <p class="text-gray-600">
+                            Renewable energy expert with 15 years experience in sustainable development projects across Southeast Asia.
+                        </p>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+                        <div class="w-32 h-32 rounded-full bg-blue-100 mx-auto mb-4 overflow-hidden">
+                            <img src="cto.jpg" alt="Jessica Ophelia" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Jessica Ophelia </h3>
+                        <p class="text-blue-800 font-medium mb-3">CTO</p>
+                        <p class="text-gray-600">
+                            Fintech specialist who built Indonesia's first peer-to-peer lending platform for social impact.
+                        </p>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="bg-white rounded-xl p-6 text-center shadow-sm">
+                        <div class="w-32 h-32 rounded-full bg-green-100 mx-auto mb-4 overflow-hidden">
+                            <img src="head.png" alt="Arya Mardhani S" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-1">Arya Mardhani</h3>
+                        <p class="text-blue-800 font-medium mb-3">Head of Community</p>
+                        <p class="text-gray-600">
+                            Former NGO leader with deep connections to grassroots environmental movements across Indonesia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Partners -->
+            <div class="mt-16">
+                <h3 class="text-xl text-center text-gray-600 mb-8">In partnership with</h3>
+                <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                    <div class="h-12 flex items-center">
+                        <i class="fas fa-building text-4xl text-gray-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-700">Ministry of Energy</span>
+                    </div>
+                    <div class="h-12 flex items-center">
+                        <i class="fas fa-leaf text-4xl text-green-800"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-700">Green Earth NGO</span>
+                    </div>
+                    <div class="h-12 flex items-center">
+                        <i class="fas fa-university text-4xl text-gray-600"></i>
+                        <span class="ml-2 text-xl font-bold text-gray-700">Sustainable Finance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-leaf text-3xl text-green-500 mr-2"></i>
+                        <span class="text-2xl font-bold">Enervest</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Accelerating the transition to renewable energy through community funding.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white">Projects</a></li>
+                        <li><a href="#net-zero" class="text-gray-400 hover:text-white">Net Zero</a></li>
+                        <li><a href="#impact" class="text-gray-400 hover:text-white">Our Impact</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Risk Disclosure</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">Jl. Ketintang , Surabaya, Indonesia</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">hello@enervest.id</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2 text-gray-400"></i>
+                            <span class="text-gray-400">+62 881 0274 87559</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <img src="ojk.jpeg" alt="OJK" class="h-8">
+                </div>
+                <p class="text-gray-400 text-sm">
+                    &copy; 2023 Enervest. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/62881027487559" class="floating-whatsapp bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-green-700 transition">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-green-800', 'text-green-800');
+                    btn.classList.add('border-transparent');
+                });
+                
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('border-green-800', 'text-green-800');
+                button.classList.remove('border-transparent');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Investment slider
+        const investmentSlider = document.getElementById('investmentSlider');
+        const investmentValue = document.getElementById('investmentValue');
+        
+        investmentSlider.addEventListener('input', () => {
+            const value = parseInt(investmentSlider.value);
+            investmentValue.textContent = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(value);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Animate progress bars when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFill = entry.target.querySelector('.progress-fill');
+                    const targetWidth = progressFill.style.width;
+                    progressFill.style.width = '0';
+                    setTimeout(() => {
+                        progressFill.style.width = targetWidth;
+                    }, 100);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
